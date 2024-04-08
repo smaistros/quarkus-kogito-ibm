@@ -1,8 +1,8 @@
 package org.acme.service;
 
 import java.util.List;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
 import org.acme.Lib1Unit;
 import org.acme.Lib2Unit;
 import org.drools.ruleunits.api.RuleUnitInstance;

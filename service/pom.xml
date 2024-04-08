@@ -1,37 +1,33 @@
-<?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.acme</groupId>
   <artifactId>service</artifactId>
   <version>1.0-SNAPSHOT</version>
   <properties>
-    <!-- bamoe-bom GAV added and kogito.bom.version increased from 9.0.0.Final to 9.0.1.Final-->
-    <kogito.bom.group-id>com.ibm.bamoe</kogito.bom.group-id>
-    <kogito.bom.artifact-id>bamoe-bom</kogito.bom.artifact-id>
-    <kogito.bom.version>9.0.1.Final</kogito.bom.version>
-    <!-- bamoe-bom GAV added -->      
-    <compiler-plugin.version>3.10.1</compiler-plugin.version>
-    <maven.compiler.release>17</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
-    <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
-    <quarkus.platform.version>2.16.7.Final</quarkus.platform.version>
-    <skipITs>true</skipITs>
-    <surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
+
+    <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
+    <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>    
+    <quarkus.platform.version>3.8.3</quarkus.platform.version>
+
+    <!-- 2.44.0.Alpha from releases repository                                -->
+    <!-- https://repository.jboss.org/nexus/content/repositories/releases/    -->
+    <kogito.bom.group-id>org.kie.kogito</kogito.bom.group-id>
+    <kogito.bom.artifact-id>kogito-bom</kogito.bom.artifact-id>
+    <kogito.bom.version>2.44.0.Alpha </kogito.bom.version>   
+    <version.org.kie.kogito>2.44.0.Alpha </version.org.kie.kogito>
+    <!-- 9.44.0.Final version matches <version.org.kie>9.44.0.Final</version.org.kie> from                               -->
+    <!-- https://repository.jboss.org/nexus/content/repositories/releases/org/kie/kogito/kogito-kie-bom/2.44.0.Alpha/    -->
+    <version.drools.decisiontables>9.44.0.Final</version.drools.decisiontables>
+
+    <maven.compiler.release>17</maven.compiler.release>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>    
   </properties>
   <dependencyManagement>
     <dependencies>
-      <!-- kogito bom imported -->
-      <dependency>
-        <groupId>${kogito.bom.group-id}</groupId>
-        <artifactId>${kogito.bom.artifact-id}</artifactId>
-        <version>${kogito.bom.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <!-- kogito bom imported -->        
       <dependency>
         <groupId>${quarkus.platform.group-id}</groupId>
         <artifactId>${quarkus.platform.artifact-id}</artifactId>
@@ -40,9 +36,9 @@
         <scope>import</scope>
       </dependency>
       <dependency>
-        <groupId>${quarkus.platform.group-id}</groupId>
-        <artifactId>quarkus-kogito-bom</artifactId>
-        <version>${quarkus.platform.version}</version>
+        <groupId>${kogito.bom.group-id}</groupId>
+        <artifactId>${kogito.bom.artifact-id}</artifactId>
+        <version>${kogito.bom.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -58,50 +54,19 @@
       <groupId>org.acme</groupId>
       <artifactId>lib2</artifactId>
       <version>1.0.0-SNAPSHOT</version>
-    </dependency>  
-    <!-- fix ERROR StatusLogger Log4j2 could not find a logging implementation. Please add log4j-core to the classpath. Using SimpleLogger to log to the console...-->
-    <dependency>
-        <groupId>org.apache.logging.log4j</groupId>
-        <artifactId>log4j-core</artifactId>
-        <version>2.20.0</version>
-    </dependency>
-    <!-- fix ERROR StatusLogger Log4j2 could not find a logging implementation. Please add log4j-core to the classpath. Using SimpleLogger to log to the console...-->
-    <!-- added to run parametrised tests-->
-    <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-params</artifactId>
-        <version>5.10.0</version>
-        <scope>test</scope>
-    </dependency>
-    <!-- added to run parametrised tests-->
-    <!-- rules facts added -->
-    <dependency>
-      <groupId>gr.alpha.cbs.brms</groupId>
-      <artifactId>CheckAccountExceptionList-ObjectModel</artifactId>
-      <version>1.0</version>
-    </dependency>
-    <dependency>
-      <groupId>gr.alpha.cbs.fuse.enums</groupId>
-      <artifactId>refdata-enums-files</artifactId>
-      <version>2.1.244</version>
-    </dependency>     
-    <!-- rules facts added -->  
+    </dependency> 
     <!-- decision tables support added -->
     <dependency>
         <groupId>org.drools</groupId>
         <artifactId>drools-decisiontables</artifactId>
+        <version>${version.drools.decisiontables}</version>
     </dependency>    
     <dependency>
         <groupId>org.drools</groupId>
         <artifactId>drools-wiring-dynamic</artifactId>
-    </dependency>  
-    <!-- decision tables support added -->
-    <!-- bamoe-ilmt-compliance-quarkus-pamoe dependency added -->
-    <dependency>
-      <groupId>com.ibm.bamoe</groupId>
-      <artifactId>bamoe-ilmt-compliance-quarkus-pamoe</artifactId>
-    </dependency>  
-    <!-- bamoe-ilmt-compliance-quarkus-pamoe dependency added -->  
+        <version>${version.drools.decisiontables}</version>        
+    </dependency>    
+    <!-- decision tables support added -->    
     <dependency>
       <groupId>org.kie.kogito</groupId>
       <artifactId>kogito-quarkus-decisions</artifactId>
@@ -131,6 +96,10 @@
       <artifactId>quarkus-resteasy-reactive</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.kie.kogito</groupId>
+      <artifactId>kogito-quarkus-rules</artifactId>
+    </dependency>
+    <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-junit5</artifactId>
       <scope>test</scope>
@@ -142,57 +111,17 @@
     </dependency>
   </dependencies>
   <build>
+    <finalName>${project.artifactId}</finalName>
     <plugins>
       <plugin>
         <groupId>${quarkus.platform.group-id}</groupId>
         <artifactId>quarkus-maven-plugin</artifactId>
         <version>${quarkus.platform.version}</version>
-        <extensions>true</extensions>
         <executions>
           <execution>
             <goals>
               <goal>build</goal>
-              <goal>generate-code</goal>
-              <goal>generate-code-tests</goal>
             </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>${compiler-plugin.version}</version>
-        <configuration>
-          <compilerArgs>
-            <arg>-parameters</arg>
-          </compilerArgs>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>${surefire-plugin.version}</version>
-        <configuration>
-          <systemPropertyVariables>
-            <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
-            <maven.home>${maven.home}</maven.home>
-          </systemPropertyVariables>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-failsafe-plugin</artifactId>
-        <version>${surefire-plugin.version}</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>integration-test</goal>
-              <goal>verify</goal>
-            </goals>
-            <configuration>
-              <systemPropertyVariables>
-                <native.image.path>${project.build.directory}/${project.build.finalName}-runner</native.image.path>
-                <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
-                <maven.home>${maven.home}</maven.home>
-              </systemPropertyVariables>
-            </configuration>
           </execution>
         </executions>
       </plugin>
@@ -212,14 +141,4 @@
       </properties>
     </profile>
   </profiles>
-  <distributionManagement>
-    <repository>
-      <id>archiva.internal.releases</id>
-      <url>https://localhost:8843/repository/internal</url>
-    </repository>    
-    <snapshotRepository>
-      <id>archiva.internal.snapshots</id>
-      <url>https://localhost:8843/repository/snapshots</url>
-    </snapshotRepository>
-  </distributionManagement>     
 </project>
