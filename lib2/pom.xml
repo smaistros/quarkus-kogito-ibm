@@ -64,18 +64,6 @@
         <scope>test</scope>
     </dependency>
     <!-- added to run parametrised tests-->
-    <!-- rules facts added -->
-    <dependency>
-      <groupId>gr.alpha.cbs.brms</groupId>
-      <artifactId>CheckAccountExceptionList-ObjectModel</artifactId>
-      <version>1.0</version>
-    </dependency>
-    <dependency>
-      <groupId>gr.alpha.cbs.fuse.enums</groupId>
-      <artifactId>refdata-enums-files</artifactId>
-      <version>2.1.244</version>
-    </dependency>     
-    <!-- rules facts added -->  
     <!-- decision tables support added -->
     <dependency>
         <groupId>org.drools</groupId>
