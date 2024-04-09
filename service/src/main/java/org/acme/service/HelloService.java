@@ -18,10 +18,11 @@ public class HelloService{
         String returnString = "Hello from RESTEasy Reactive \n";
 
         JSONArray ja = new JSONArray();
-
-        ja.add(getInstanceLib1());
-        ja.add(getInstanceLib2());
-
+        // DO A MAINFRAIME CALL
+        ja.add(getInstanceLib1()); // Rule service
+        // DO A SECOND MAINFRAIME CALL
+        ja.add(getInstanceLib2()); // Rule service
+        // DO A THIRD MAINFRAIME CALL
         return ja;
     }
 
