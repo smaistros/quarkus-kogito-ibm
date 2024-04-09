@@ -17,6 +17,7 @@ package org.acme;
 unit Lib1Unit;
 
 rule helloWorld1
+salience 1
 when
     eval( true )
 then

@@ -24,7 +24,7 @@ public class Hello1Test {
             for ( String s : queryResult ){
                 strings = strings + s;
             }
-            assertEquals("hello hello world from lib1 hello world fom from lib1 decision table", strings);
+            assertEquals("hello hello world from lib1 hello world from lib1 decision table", strings);
         } finally {
             instance.close();
         }
