@@ -1,19 +1,27 @@
 package org.acme.service;
 
 import java.util.List;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
+
+import jakarta.inject.Inject;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
 import org.acme.Lib1Unit;
 import org.acme.Lib2Unit;
+import org.drools.ruleunits.api.RuleUnit;
 import org.drools.ruleunits.api.RuleUnitInstance;
-import org.drools.ruleunits.api.RuleUnitProvider;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 
 @Path("/hello")
 public class HelloService{
 
-    @GET    
+    @Inject
+    RuleUnit<Lib1Unit> ruleUnit1;
+
+    @Inject
+    RuleUnit<Lib2Unit> ruleUnit2;
+
+    @GET
     public JSONArray hello() {
         String returnString = "Hello from RESTEasy Reactive \n";
 
@@ -30,7 +38,7 @@ public class HelloService{
         JSONObject jo = new JSONObject();     
 
         Lib1Unit lib1Unit = new Lib1Unit();
-        RuleUnitInstance<Lib1Unit> instance = RuleUnitProvider.Factory.get().createRuleUnitInstance(lib1Unit);
+        RuleUnitInstance<Lib1Unit> instance = ruleUnit1.createInstance(lib1Unit);
         try {
             lib1Unit.getStrings().add("hello");                    
 
@@ -55,7 +63,8 @@ public class HelloService{
         JSONObject jo = new JSONObject();                
 
         Lib2Unit lib2Unit = new Lib2Unit();
-        RuleUnitInstance<Lib2Unit> instance = RuleUnitProvider.Factory.get().createRuleUnitInstance(lib2Unit);
+        RuleUnitInstance<Lib2Unit> instance = ruleUnit2.createInstance(lib2Unit);
+
         try {
             lib2Unit.getStrings().add("hello");                    
 
