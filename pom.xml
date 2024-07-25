@@ -8,17 +8,17 @@
   <packaging>pom</packaging>
   <properties>
     <!-- bamoe-bom GAV added and kogito.bom.version increased from 9.0.0.Final to 9.0.1.Final-->
-    <kogito.bom.group-id>org.kie.kogito</kogito.bom.group-id>
-    <kogito.bom.artifact-id>kogito-bom</kogito.bom.artifact-id>
-    <kogito.bom.version>999-SNAPSHOT</kogito.bom.version>
+    <kogito.bom.group-id>com.ibm.bamoe</kogito.bom.group-id>
+    <kogito.bom.artifact-id>bamoe-bom</kogito.bom.artifact-id>
+    <kogito.bom.version>9.1.0-ibm-0001</kogito.bom.version>
     <!-- bamoe-bom GAV added -->      
     <compiler-plugin.version>3.10.1</compiler-plugin.version>
     <maven.compiler.release>17</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
-    <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
-    <quarkus.platform.version>3.2.10.Final</quarkus.platform.version>
+    <quarkus.platform.group-id>com.redhat.quarkus.platform</quarkus.platform.group-id>
+    <quarkus.platform.version>3.8.5.SP1-redhat-00001</quarkus.platform.version>  
     <skipITs>true</skipITs>
     <surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
   </properties>
@@ -28,6 +28,6 @@
     <module>lib1</module>
     <module>lib2</module>
     <module>service</module>
-</modules>
+  </modules>
 
 </project>
